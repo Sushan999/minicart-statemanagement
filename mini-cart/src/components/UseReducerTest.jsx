@@ -2,12 +2,14 @@ import React, { useReducer } from "react";
 
 const UseReducerTest = () => {
   const reducer = (state, action) => {
-    if (action.type === "SUCCESS") {
-      alert("Success Happen Guys");
-      return;
+    if (action.type === "ADD") {
+      alert("Added To Cart");
+      return state; // fix
+    } else if (action.type === "REMOVE") {
+      alert("Removed From Cart");
+      return state; // fix
     } else {
-      alert("UnSuccess Happen Guys");
-      return;
+      return state; // always return something
     }
   };
 
