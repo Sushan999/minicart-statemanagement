@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTask, removeTask } from "../store";
+import { addTask, fetchTask, removeTask } from "../store";
 
 const Todo = () => {
   const [task, setTask] = useState("");
   const tasks = useSelector((state) => state.task);
   const dispatch = useDispatch();
+
+  const handleFetchTask = () => {
+    dispatch(fetchTask());
+  };
 
   return (
     <div>
@@ -26,6 +30,7 @@ const Todo = () => {
         >
           ADD
         </button>
+        <button onClick={handleFetchTask}>Fetch Tasks</button>
       </div>
 
       <div>
