@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTask, fetchTask, removeTask } from "../store";
+import { deleteTaskSlice, addTask } from "../store";
 
 const Todo = () => {
   const [task, setTask] = useState("");
-  const tasks = useSelector((state) => state.task);
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
+  const tasks = useSelector((state) => state.taskReducer.task);
   const handleFetchTask = () => {
-    dispatch(fetchTask());
+    // dispatch(fetchTask());
   };
 
   return (
     <div>
       <h1>Todo</h1>
+
       <div>
         <input
           type="text"
@@ -37,7 +38,9 @@ const Todo = () => {
         {tasks.map((t, index) => (
           <div key={index}>
             {index}: {t}{" "}
-            <button onClick={() => dispatch(removeTask(index))}>Delete</button>
+            <button onClick={() => dispatch(deleteTaskSlice(index))}>
+              Delete
+            </button>
           </div>
         ))}
       </div>
