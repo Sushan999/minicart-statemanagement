@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteTaskSlice, addTask } from "../store";
+import { addTask, deleteTask } from "../features/task/taskSlice";
 
 const Todo = () => {
   const [task, setTask] = useState("");
@@ -38,9 +38,7 @@ const Todo = () => {
         {tasks.map((t, index) => (
           <div key={index}>
             {index}: {t}{" "}
-            <button onClick={() => dispatch(deleteTaskSlice(index))}>
-              Delete
-            </button>
+            <button onClick={() => dispatch(deleteTask(index))}>Delete</button>
           </div>
         ))}
       </div>

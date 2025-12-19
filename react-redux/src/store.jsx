@@ -111,43 +111,18 @@
 // console.log(store.dispatch(addTask("Buy Mangos")));
 
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-
-// slice constants
-const initialState = {
-  task: [],
-};
-
-const taskReducer = createSlice({
-  name: "task",
-  initialState,
-  reducers: {
-    addTask(state, action) {
-      state.task.push(action.payload);
-    },
-    deleteTask(state, action) {
-      state.task = state.task.filter(
-        (_task, index) => index !== action.payload
-      );
-    },
-  },
-});
-
-// ✅ export slice actions
-export const { addTask: addTaskSlice, deleteTask: deleteTaskSlice } =
-  taskReducer.actions;
-
-export const { addTask, deleteTask } = taskReducer.actions;
+import { addTask, taskReducer } from "./features/task/taskSlice";
 
 // store
 export const store = configureStore({
   reducer: {
-    taskReducer: taskReducer.reducer, // ✅ use .reducer
+    taskReducer: taskReducer.reducer,
   },
 });
 
-// ✅ Dispatch RTK slice actions
-console.log(store.dispatch(addTaskSlice("Buy Mango")));
-console.log(store.dispatch(addTaskSlice("Buy Mangos")));
+// Dispatch RTK slice actions
+console.log(store.dispatch(addTask("Buy Mango")));
+console.log(store.dispatch(addTask("Buy Mangos")));
 
-// ✅ Check updated state
+// Check updated state
 console.log(store.getState());
